@@ -31,7 +31,7 @@
 
 (defvar *in-main-thread* nil
   "Dynamically bound to T during the execution of the main stumpwm function.")
-
+
 ;;; Main
 
 (run-shell-command "xmodmap -e 'clear mod4'" t)
@@ -66,7 +66,11 @@
 (run-shell-command "emacs --daemon")
 (run-shell-command "picom")
 
-
+(load-module "swm-gaps")
+(setf swm-gaps:*inner-gaps-size* 7
+      swm-gaps:*outer-gaps-size* 12
+      swm-gaps:*head-gaps-size* 0)
+      
 (defun load-rc-file (&optional (catch-errors t))
   "Load the user's .stumpwmrc file or the system wide one if that
 doesn't exist. Returns a values list: whether the file loaded (t if no
