@@ -62,6 +62,10 @@
 (define-key *root-map* (kbd "RET") "exec st")
 (define-key *root-map* (kbd "w") "exec brave")
 
+(define-key *root-map* (kbd "g") "toggle-gaps")
+(define-key *root-map* (kbd "X") "increase-gaps")
+(define-key *root-map* (kbd "Z") "decrease-gaps")
+
 (run-shell-command "feh --bg-scale /home/thor/.config/herbstluftwm/wallpaper2.jpg")
 (run-shell-command "emacs --daemon")
 (run-shell-command "picom")
@@ -70,6 +74,21 @@
 (setf swm-gaps:*inner-gaps-size* 7
       swm-gaps:*outer-gaps-size* 12
       swm-gaps:*head-gaps-size* 0)
+      
+(defcommand increase-gaps () ()
+  (setf swm-gaps:*outer-gaps-size* (+ swm-gaps:*outer-gaps-size* 5)
+        swm-gaps:*inner-gaps-size* (+ swm-gaps:*inner-gaps-size* 5))
+  (swm-gaps:toggle-gaps)
+  (swm-gaps:toggle-gaps))
+
+(defcommand decrease-gaps () ()
+  (if ((and (> swm-gaps:*inner-gaps-size* 7) (> swm-gaps:*outer-gaps-size* 7)))
+      (progn
+        (setf swm-gaps:*outer-gaps-size* (- swm-gaps:*outer-gaps-size* 5)
+              swm-gaps:*inner-gaps-size* (- swm-gaps:*inner-gaps-size* 5))
+        (swm-gaps:toggle-gaps)
+        (swm-gaps:toggle-gaps))))
+     
       
 (defun load-rc-file (&optional (catch-errors t))
   "Load the user's .stumpwmrc file or the system wide one if that
