@@ -63,6 +63,16 @@
       *float-window-title-height* 15
       *window-border-style*       :thick
       *window-format*             "%n:%t")
+      
+      
+(set-border-color        gruv1)
+(set-focus-color         gruv9)
+(set-unfocus-color       gruv1)
+(set-float-focus-color   gruv9)
+(set-float-unfocus-color gruv1)
+(set-fg-color            gruv1)
+(set-bg-color            gruv10)
+
 
 ;;; Main
 
@@ -101,14 +111,6 @@
 (run-shell-command "feh --bg-scale /home/thor/.config/herbstluftwm/wallpaper2.jpg")
 (run-shell-command "emacs --daemon")
 (run-shell-command "picom")
-
-(set-border-color        gruv1)
-(set-focus-color         gruv9)
-(set-unfocus-color       gruv1)
-(set-float-focus-color   gruv9)
-(set-float-unfocus-color gruv1)
-(set-fg-color gruv1)
-(set-bg-color gruv10)
 
 (defun load-rc-file (&optional (catch-errors t))
   "Load the user's .stumpwmrc file or the system wide one if that
