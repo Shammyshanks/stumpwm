@@ -90,6 +90,9 @@
 (define-key *root-map* (kbd "q") "delete")
 (define-key *root-map* (kbd "r") "remove")
 
+(define-key *root-map* (kbd "u) "vsplit")
+(define-key *root-map* (kbd "o") "hsplit")
+
 (define-key *top-map* (kbd "h") "move-focus left")
 (define-key *top-map* (kbd "j") "move-focus down")
 (define-key *top-map* (kbd "k") "move-focus up")
