@@ -31,6 +31,33 @@
 
 (defvar *in-main-thread* nil
   "Dynamically bound to T during the execution of the main stumpwm function.")
+;;(load "~/.stumpwm.d/colors.lisp")
+;;colors
+
+(defvar gruv1 "#fbf1c7")
+(defvar gruv2 "#cc241d")
+(defvar gruv3 "#98971a")
+(defvar gruv4 "#d79921")
+(defvar gruv5 "#458588")
+(defvar gruv6 "#b16286")
+(defvar gruv7 "#689d6a")
+(defvar gruv8 "#a7c6f64")
+(defvar gruv9 "#d65d0e")
+(defvar gruv10 "#282828")
+
+(setq *colors*
+      `(,gruv10   ;; 0 black
+        ,gruv2  ;; 1 red
+        ,gruv3  ;; 2 green
+        ,gruv4  ;; 3 yellow
+        ,gruv5  ;; 4 blue
+        ,gruv6  ;; 5 magenta
+        ,gruv7   ;; 6 cyan
+        ,gruv1)) ;; 7 white
+
+(when *initializing*
+  (update-color-map (current-screen)))
+
 
 ;;; Main
 
@@ -38,6 +65,8 @@
 (run-shell-command "xmodmap -e \'keycode 133 = F20\'" t)
 (set-prefix-key (kbd "F20"))
 (setq *mouse-focus-policy* :click)
+(set-module-dir "~/stump.d/contrib")
+(setf *startup-message* nil)
 
 
 (define-key *root-map* (kbd "Q") "quit")
@@ -68,6 +97,13 @@
 (run-shell-command "emacs --daemon")
 (run-shell-command "picom")
 
+(set-border-color        gruv1)
+(set-focus-color         gruv9)
+(set-unfocus-color       gruv1)
+(set-float-focus-color   gruv9)
+(set-float-unfocus-color gruv1)
+(set-fg-color gruv1)
+(set-bg-color gruv10)
 
 (defun load-rc-file (&optional (catch-errors t))
   "Load the user's .stumpwmrc file or the system wide one if that
