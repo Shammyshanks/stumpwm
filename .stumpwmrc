@@ -61,7 +61,7 @@
 (setf *normal-border-width*       15
       *float-window-border*       15
       *float-window-title-height* 15
-      *window-border-style*       :none
+      *window-border-style*       :thick
       *window-format*             "%n:%t")
 
 ;;; Main
